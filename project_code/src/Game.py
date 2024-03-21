@@ -31,6 +31,14 @@ class Game:
 
     def _initialize_game(self):
         """Initialize the game with characters, locations, and events based on the user's properties."""
+        character_list = [Character() for _ in range(10)]
+        location_list = [Location() for _ in range(2)]
+
+        for character in character_list:
+            self.add_character()
+        for location in location_list:
+            self.add_location
+        
         pass
 
     def start_game(self):
@@ -42,13 +50,13 @@ class Game:
         """The main game loop."""
         while self.continue_playing:
             # Ask for user input
-            user_input = input("What do you want to do? ")
+            user_input = input("What do you want to do? ") #change this--add more detail, etc.
         
             # Parse user input
-            parsed_input = self.parse_user_input(user_input)
+            parsed_input = self.parse_user_input(user_input) #same
         
             # Update game state based on parsed input
-            self.update_game_state(parsed_input)
+            self.update_game_state(parsed_input) #same
         
             # Check if party is all dead
             if self.is_party_dead():
