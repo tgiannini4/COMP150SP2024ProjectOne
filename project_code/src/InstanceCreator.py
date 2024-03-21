@@ -3,6 +3,7 @@ from project_code.src.User import User
 from project_code.src.UserFactory import UserFactory
 from project_code.src.UserInputParser import UserInputParser
 
+"Hello"
 
 class InstanceCreator:
 
