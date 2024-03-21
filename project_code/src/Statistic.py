@@ -35,3 +35,4 @@ class Strength(Statistic):
         self.description = "Strength is a measure of physical power."
 
 # and so on for the other statistics
+# other stats are dexterity, constitution, vitality, endurance, intelligence, wisdom, knowledge, willpower, spirit, capacity

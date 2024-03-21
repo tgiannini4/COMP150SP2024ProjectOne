@@ -36,22 +36,7 @@ class Game:
     def start_game(self):
         return self._main_game_loop()
 
-    # def _main_game_loop(self):
-    #     """The main game loop."""
-    #     while self.continue_playing:
-    #         pass
-    #         # ask for user input
-    #         # parse user input
-    #         # update game state
-    #         # check if party is all dead
-    #         # if part is dead, award legacy points and end instance of game
-    #         # if party is not dead, continue game
-    #     if self.continue_playing is False:
-    #         return True
-    #     elif self.continue_playing == "Save and quit":
-    #         return "Save and quit"
-    #     else:
-    #         return False
+
         
     def _main_game_loop(self):
         """The main game loop."""
