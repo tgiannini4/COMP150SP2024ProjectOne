@@ -26,7 +26,7 @@ class Game:
         self.locations.append(location)
 
     def add_event(self, event: Event):
-        """Add an event to the game."""
+        """Add an event to the game"""
         self.events.append(event)
 
     def _initialize_game(self):
