@@ -18,7 +18,7 @@ def start_game():
             response = game_instance.start_game()
             if response == "Save and quit":
                 user.save_game()
-                print("Game saved, Goodbye!")
+                print("Game saved. Goodbye!")
                 sys.exit()
             elif response:
                 print("Goodbye!")
