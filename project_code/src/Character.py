@@ -1,26 +1,110 @@
 from project_code.src.Statistic import *
 
 
+from project_code.src.Statistic import *
+
+
 class Character:
+    def __init__(self, name: str, strength: int, dexterity: int, constitution: int,
+                 vitality: int, endurance: int, intelligence: int, wisdom: int,
+                 knowledge: int, willpower: int, spirit: int):
+        self.name = name
+        self.strength: Strength = Strength(self, strength)
+        self.dexterity: Dexterity = Dexterity(self, dexterity)
+        self.constitution: Constitution = Constitution(self, constitution)
+        self.vitality: Vitality = Vitality(self, vitality)
+        self.endurance: Endurance = Endurance(self, endurance)
+        self.intelligence: Intelligence = Intelligence(self, intelligence)
+        self.wisdom: Wisdom = Wisdom(self, wisdom)
+        self.knowledge: Knowledge = Knowledge(self, knowledge)
+        self.willpower: Willpower = Willpower(self, willpower)
+        self.spirit: Spirit = Spirit(self, spirit)
 
-    def __init__(self, name: str = None):
-        """
-        Core Stats: Everyone has these
-        - Strength: How much you can lift. How strong you are. How hard you punch, etc.
-        - Dexterity: How quick your limbs can perform intricate tasks. How adept you are at avoiding blows you anticipate. Impacts speed.
-        - Constitution: The bodies natural armor. Characters may have unique positive or negative constitutions that provide additional capabilities
-        - vitality: A measure of how lively you feel. How many Hit Points you have. An indirect measure of age.
-        - Endurance: How fast you recover from injuries. How quickly you recover from fatigue.
-        - Intelligence: How smart you are. How quickly you can connect the dots to solve problems. How fast you can think.
-        - Wisdom: How effectively you can make choices under pressure. Generally low in younger people.
-        - Knowledge: How much you know? This is a raw score for all knowledge. Characters may have specific areas of expertise with a bonus or deficit in some areas.
-        - Willpower: How quickly or effectively the character can overcome natural urges. How susceptible they are to mind control.
-        - Spirit: Catchall for ability to perform otherworldly acts. High spirit is rare. Different skills have different resource pools they might use like mana, stamina, etc. These are unaffected by spirit. Instead spirit is a measure of how hard it is to learn new otherworldly skills and/or master general skills.
-         """
-        self.name = self._generate_name() if name is None else name
-        self.strength: Strength = Strength(self)
-        # etc
-        # self.intelligence: Intelligence = Intelligence(self)
 
-    def _generate_name(self):
-        return "Bob"
+# Define the base statistics for each character
+base_statistics = {
+    "Maggie": (10, 9, 5, 6, 10, 8, 10, 3, 10, 9),
+    "Owen": (9, 9, 5, 3, 9, 1, 9, 9, 2, 9),
+    "Priscilla": (8, 7, 8, 8, 4, 8, 5, 8, 1, 8),
+    "Grace": (7, 1, 7, 7, 5, 3, 7, 4, 7, 2),
+    "Ashley": (6, 7, 8, 6, 6, 6, 7, 8, 6, 3),
+    "Sydney": (5, 6, 7, 5, 5, 5, 3, 7, 5, 5),
+    "Maya": (4, 5, 6, 4, 5, 6, 4, 4, 4, 4),
+    "Marcus": (3, 5, 4, 3, 3, 6, 3, 4, 3, 5),
+    "David": (1, 1, 2, 2, 2, 2, 1, 1, 2, 2)
+}
+
+
+# Define a subclass for each character
+class Maggie(Character):
+    def __init__(self):
+        super().__init__("Maggie", *base_statistics["Maggie"])
+
+
+class Owen(Character):
+    def __init__(self):
+        super().__init__("Owen", *base_statistics["Owen"])
+
+
+class Priscilla(Character):
+    def __init__(self):
+        super().__init__("Priscilla", *base_statistics["Priscilla"])
+
+
+class Grace(Character):
+    def __init__(self):
+        super().__init__("Grace", *base_statistics["Grace"])
+
+
+class Ashley(Character):
+    def __init__(self):
+        super().__init__("Ashley", *base_statistics["Ashley"])
+
+
+class Sydney(Character):
+    def __init__(self):
+        super().__init__("Sydney", *base_statistics["Sydney"])
+
+
+class Maya(Character):
+    def __init__(self):
+        super().__init__("Maya", *base_statistics["Maya"])
+
+
+class Marcus(Character):
+    def __init__(self):
+        super().__init__("Marcus", *base_statistics["Marcus"])
+
+
+class David(Character):
+    def __init__(self):
+        super().__init__("David", *base_statistics["David"])
+
+
+# Create instances of each character class
+maggie = Maggie()
+owen = Owen()
+priscilla = Priscilla()
+grace = Grace()
+ashley = Ashley()
+sydney = Sydney()
+maya = Maya()
+marcus = Marcus()
+david = David()
+
+# Print out the statistics for each character
+characters = [maggie, owen, priscilla, grace, ashley, sydney, maya, marcus, david]
+
+for character in characters:
+    print(f"{character.name}:")
+    print(f"Strength: {character.strength.value}")
+    print(f"Dexterity: {character.dexterity.value}")
+    print(f"Constitution: {character.constitution.value}")
+    print(f"Vitality: {character.vitality.value}")
+    print(f"Endurance: {character.endurance.value}")
+    print(f"Intelligence: {character.intelligence.value}")
+    print(f"Wisdom: {character.wisdom.value}")
+    print(f"Knowledge: {character.knowledge.value}")
+    print(f"Willpower: {character.willpower.value}")
+    print(f"Spirit: {character.spirit.value}")
+    print()
