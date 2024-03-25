@@ -27,7 +27,7 @@ Noke's Bodyguards: Due to his newly superstitious nature, Noke has hired multipl
 Noke's Bed Dragon Wyrmling: Noke's pet dragon (that happens to appear as a bed when asleep) that he also uses for self defense. Appears as if it is carved out of wood and has bedsheet for wings. Not very intelligent since it is still a young dragon, favors using "Splinter Breath" when attacking.
 
 ## Location:
-You and your party are passing through Transmutea, a small village known for its prominence of transmutation magic. Overlooking the small town is a large tower, where the locals claim the master wizard resides.  
+You and your party are passing through Ewe-ok Village, a small village known for its prominence of transmutation magic. Overlooking the small town is a large tower, where the locals claim the master wizard resides. Other locations within the village that your party will/can explore include "Temple of the Sheep", "Baaaadmans Village","Sheep Desert", "Tomb of Lambs", "The Lost Valley", "The Palace of Dolly", "Enchanted Woods", "Mary's Dreamy Wonderland", "City of Mutton."   
 
 ## Items:
 Scroll of Speak to Animals: If read aloud by a character, the spell is activated. Morphs the sheep's baaing to intelligible speech.  
