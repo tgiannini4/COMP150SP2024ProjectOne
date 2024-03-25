@@ -102,62 +102,62 @@ locations = [Location(name, parser) for name in random.sample(location_names, 10
 
 
 
-from enum import Enum
+# from enum import Enum
 
 
-class EventStatus(Enum):
-    UNKNOWN = "unknown"
-    PASS = "pass"
-    FAIL = "fail"
-    PARTIAL_PASS = "partial_pass"
+# class EventStatus(Enum):
+#     UNKNOWN = "unknown"
+#     PASS = "pass"
+#     FAIL = "fail"
+#     PARTIAL_PASS = "partial_pass"
 
 
-class Event:
+# class Event:
 
-        def __init__(self, parser, data: dict = None):
-
-
-
-            self.parser = parser
-            # parse json file
-            self.primary = data['primary_attribute']
-            self.secondary = data['secondary_attribute']
-            self.prompt_text = data['prompt_text']
-            self.pass_ = data['pass']
-            self.fail = data['fail']
-            self.partial_pass = data['partial_pass']
+#         def __init__(self, parser, data: dict = None):
 
 
-            self.status = EventStatus.UNKNOWN
-            self.fail = {
-                "message": "You failed."
-            }
-            self.pass_ = {
-                "message": "You passed."
-            }
-            self.partial_pass = {
-                "message": "You partially passed."
-            }
-            self.prompt_text = "A dragon appears, what will you do?"
 
-            self.primary: Statistic = Strength()
-            self.secondary: Statistic = Dexterity()
+#             self.parser = parser
+#             # parse json file
+#             self.primary = data['primary_attribute']
+#             self.secondary = data['secondary_attribute']
+#             self.prompt_text = data['prompt_text']
+#             self.pass_ = data['pass']
+#             self.fail = data['fail']
+#             self.partial_pass = data['partial_pass']
 
-        def execute(self, party):
-            chosed_one = self.parser.select_party_member(party)
-            chosen_skill = self.parser.select_skill(chosed_one)
 
-            self.set_status(EventStatus.PASS)
-            pass
+#             self.status = EventStatus.UNKNOWN
+#             self.fail = {
+#                 "message": "You failed."
+#             }
+#             self.pass_ = {
+#                 "message": "You passed."
+#             }
+#             self.partial_pass = {
+#                 "message": "You partially passed."
+#             }
+#             self.prompt_text = "A dragon appears, what will you do?"
 
-        def set_status(self, status: EventStatus = EventStatus.UNKNOWN):
-            self.status = status
+#             self.primary: Statistic = Strength()
+#             self.secondary: Statistic = Dexterity()
 
-        def resolve_choice(self, party, character, chosen_skill):
-            # check if the skill attributes overlap with the event attributes
-            # if they don't overlap, the character fails
-            # if one overlap, the character partially passes
-            # if they do overlap, the character passes
+#         def execute(self, party):
+#             chosed_one = self.parser.select_party_member(party)
+#             chosen_skill = self.parser.select_skill(chosed_one)
+
+#             self.set_status(EventStatus.PASS)
+#             pass
+
+#         def set_status(self, status: EventStatus = EventStatus.UNKNOWN):
+#             self.status = status
+
+#         def resolve_choice(self, party, character, chosen_skill):
+#             # check if the skill attributes overlap with the event attributes
+#             # if they don't overlap, the character fails
+#             # if one overlap, the character partially passes
+#             # if they do overlap, the character passes
 
 
 #### Events:
