@@ -23,9 +23,9 @@ def start_game():
             elif response:
                 print("Goodbye!")
                 sys.exit()
-    else:
-        print("See you next time!")
-        sys.exit()
+            else:
+                print("See you next time!")
+            sys.exit()
 
 if __name__ == '__main__':
     start_game()
@@ -41,10 +41,8 @@ import random
 
 class Location:
 
-import json
-
 # List of location names
-location_names = [
+    location_names = [
     "Temple of the Sheep",
     "Baaaadmans Village",
     "Sheep Desert",
@@ -57,18 +55,14 @@ location_names = [
     "City of Mutton"
 ]
 
-# Writing the location names to a JSON file
-with open("location_names.json", "w") as file:
-    json.dump(location_names, file)
-
 import random
 
-    def __init__(self, name, parser, number_of_events: int = 1):
+def __init__(self, name, parser, number_of_events: int = 1):
         self.name = name
         self.parser = parser
         self.events = [Event(self.parser) for _ in range(number_of_events)]
 
-    def create_custom_event_from_static_text_file(self, file_path):
+def create_custom_event_from_static_text_file(self, file_path):
         # load json file from path
         with open(file_path, "r") as file:
             data = json.load(file)
@@ -92,10 +86,10 @@ location_names = [
 locations = [Location(name, parser) for name in random.sample(location_names, 10)]
 
 
-    def __init__(self, parser, number_of_events: int = 1):
+def __init__(self, parser, number_of_events: int = 1):
         self.parser = parser
         self.events = [Event(self.parser) for _ in range(number_of_events)]
-    pass
+pass
 
 
 
@@ -417,28 +411,70 @@ def resolution_and_future_plans(party):
 
 #Resolution and Future Plans: With Finethir's gratitude and promises of rewards, your party reflects on the adventure and discusses potential future endeavors with their newly restored ally. Perhaps there are still mysteries to uncover in Ewe-ok Village or beyond. The end. 
 
-from project_code.src.Statistic import *
+import random
 
-
-from project_code.src.Statistic import *
+# Importing the required classes from project_code.src.Statistic
+from project_code.src.Statistic import Strength, Dexterity, Constitution, Vitality, Endurance, \
+    Intelligence, Wisdom, Knowledge, Willpower, Spirit
 
 
 class Character:
-    def __init__(self, name: str, strength: int, dexterity: int, constitution: int,
-                 vitality: int, endurance: int, intelligence: int, wisdom: int,
-                 knowledge: int, willpower: int, spirit: int):
+    def __init__(self, name: str):
         self.name = name
-        self.strength: Strength = Strength(self, strength)
-        self.dexterity: Dexterity = Dexterity(self, dexterity)
-        self.constitution: Constitution = Constitution(self, constitution)
-        self.vitality: Vitality = Vitality(self, vitality)
-        self.endurance: Endurance = Endurance(self, endurance)
-        self.intelligence: Intelligence = Intelligence(self, intelligence)
-        self.wisdom: Wisdom = Wisdom(self, wisdom)
-        self.knowledge: Knowledge = Knowledge(self, knowledge)
-        self.willpower: Willpower = Willpower(self, willpower)
-        self.spirit: Spirit = Spirit(self, spirit)
+        self.strength: Strength = None
+        self.dexterity: Dexterity = None
+        self.constitution: Constitution = None
+        self.vitality: Vitality = None
+        self.endurance: Endurance = None
+        self.intelligence: Intelligence = None
+        self.wisdom: Wisdom = None
+        self.knowledge: Knowledge = None
+        self.willpower: Willpower = None
+        self.spirit: Spirit = None
+        self.generate_statistics()
 
+class Statistic:
+    def __init__(self, value):
+        self.value = value
+
+    def __str__(self):
+        return str(self.value)
+
+    def increase(self, amount):
+        self.value += amount
+
+    def decrease(self, amount):
+        self.value -= amount
+
+def Strength(value):
+    return Statistic(value)
+
+def Dexterity(value):
+    return Statistic(value)
+
+def Constitution(value):
+    return Statistic(value)
+
+def Vitality(value):
+    return Statistic(value)
+
+def Endurance(value):
+    return Statistic(value)
+
+def Intelligence(value):
+    return Statistic(value)
+
+def Wisdom(value):
+    return Statistic(value)
+
+def Knowledge(value):
+    return Statistic(value)
+
+def Willpower(value):
+    return Statistic(value)
+
+def Spirit(value):
+    return Statistic(value)
 
 # Define the base statistics for each character
 base_statistics = {

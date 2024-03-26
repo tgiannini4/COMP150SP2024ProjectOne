@@ -1,25 +1,67 @@
-from project_code.src.Statistic import *
+import random
 
-
-from project_code.src.Statistic import *
+# Importing the required classes from project_code.src.Statistic
+from project_code.src.Statistic import Strength, Dexterity, Constitution, Vitality, Endurance, \
+    Intelligence, Wisdom, Knowledge, Willpower, Spirit
 
 
 class Character:
-    def __init__(self, name: str, strength: int, dexterity: int, constitution: int,
-                 vitality: int, endurance: int, intelligence: int, wisdom: int,
-                 knowledge: int, willpower: int, spirit: int):
+    def __init__(self, name: str):
         self.name = name
-        self.strength: Strength = Strength(self, strength)
-        self.dexterity: Dexterity = Dexterity(self, dexterity)
-        self.constitution: Constitution = Constitution(self, constitution)
-        self.vitality: Vitality = Vitality(self, vitality)
-        self.endurance: Endurance = Endurance(self, endurance)
-        self.intelligence: Intelligence = Intelligence(self, intelligence)
-        self.wisdom: Wisdom = Wisdom(self, wisdom)
-        self.knowledge: Knowledge = Knowledge(self, knowledge)
-        self.willpower: Willpower = Willpower(self, willpower)
-        self.spirit: Spirit = Spirit(self, spirit)
+        self.strength: Strength = None
+        self.dexterity: Dexterity = None
+        self.constitution: Constitution = None
+        self.vitality: Vitality = None
+        self.endurance: Endurance = None
+        self.intelligence: Intelligence = None
+        self.wisdom: Wisdom = None
+        self.knowledge: Knowledge = None
+        self.willpower: Willpower = None
+        self.spirit: Spirit = None
+        self.generate_statistics()
 
+class Statistic:
+    def __init__(self, value):
+        self.value = value
+
+    def __str__(self):
+        return str(self.value)
+
+    def increase(self, amount):
+        self.value += amount
+
+    def decrease(self, amount):
+        self.value -= amount
+
+def Strength(value):
+    return Statistic(value)
+
+def Dexterity(value):
+    return Statistic(value)
+
+def Constitution(value):
+    return Statistic(value)
+
+def Vitality(value):
+    return Statistic(value)
+
+def Endurance(value):
+    return Statistic(value)
+
+def Intelligence(value):
+    return Statistic(value)
+
+def Wisdom(value):
+    return Statistic(value)
+
+def Knowledge(value):
+    return Statistic(value)
+
+def Willpower(value):
+    return Statistic(value)
+
+def Spirit(value):
+    return Statistic(value)
 
 # Define the base statistics for each character
 base_statistics = {
