@@ -4,8 +4,26 @@
 # from project_code.src.InstanceCreator import InstanceCreator
 # from project_code.src.UserFactory import UserFactory
 import sys
-from typing import List
 import random
+# import project_code
+from typing import List
+# from project_code.src.UserInputParser import UserInputParser
+# from project_code.src.InstanceCreator import InstanceCreator
+# from project_code.src.UserFactory import UserFactory
+
+def parse_user_input():
+    """
+    Parse user input and return the parsed data.
+    """
+    user_input = input("Enter your input: ")
+    # Perform parsing logic here
+    parsed_data = user_input.split()  # Example parsing logic (split input by whitespace)
+    return parsed_data
+
+# Example usage:
+if __name__ == "__main__":
+    parsed_input = parse_user_input()
+    print("Parsed input:", parsed_input)
 
 def create_parser():
     return UserInputParser()
