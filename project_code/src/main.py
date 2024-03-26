@@ -1,13 +1,11 @@
 # main.py
 import sys
-import json
 import random
+import project_code.src
 from typing import List
 from project_code.src.UserInputParser import UserInputParser
 from project_code.src.InstanceCreator import InstanceCreator
 from project_code.src.UserFactory import UserFactory
-
-from project_code.src.UserInputParser import UserInputParser
 
 def create_parser():
     return UserInputParser()
@@ -47,10 +45,8 @@ if __name__ == '__main__':
 
 class Location:
 
-    import json
-
 # List of location names
-location_names = [
+    location_names = [
     "Temple of the Sheep",
     "Baaaadmans Village",
     "Sheep Desert",
@@ -63,11 +59,20 @@ location_names = [
     "City of Mutton"
 ]
 
-# Writing the location names to a JSON file
-with open("location_names.json", "w") as file:
-    json.dump(location_names, file)
-
 import random
+
+def data(self, file_path):
+    # Example data dictionary
+    data = {
+        "event_name": "Example Event",
+        "event_description": "This is an example event description.",
+        "event_location": "Example Location",
+        # Add more key-value pairs as needed
+    }
+
+    # Now you can use the 'data' variable to create an Event object
+    return Event(self.parser, data)
+
 
 def __init__(self, name, parser, number_of_events: int = 1):
         self.name = name
@@ -75,9 +80,6 @@ def __init__(self, name, parser, number_of_events: int = 1):
         self.events = [Event(self.parser) for _ in range(number_of_events)]
 
 def create_custom_event_from_static_text_file(self, file_path):
-        # load json file from path
-        with open(file_path, "r") as file:
-            data = json.load(file)
 
         return Event(self.parser, data)
 
