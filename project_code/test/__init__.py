@@ -1,6 +1,8 @@
 import unittest
 from unittest.mock import MagicMock
-from project_code import UserInputParser, UserFactory, InstanceCreator, User
+import sys
+from typing import List
+import random
 
 
 class TestUserInputParser(unittest.TestCase):
@@ -101,10 +103,6 @@ if __name__ == '__main__':
 
 
 import unittest
-from project_code import skill_check, PartyMember, create_party, encounter_frantic_sheep, revelation_of_finethir_shinebright, \
-    learning_of_ahmed_nokes_betrayal, encounter_with_guz, navigating_through_ewe_ok_village, \
-    confrontation_with_nokes_bodyguards, battle_with_nokes_bed_dragon_wyrmling, \
-    retrieve_the_wand_of_true_polymorph, restoration_of_finethir_shinebright, resolution_and_future_plans
 
 class TestProjectCode(unittest.TestCase):
 
@@ -215,7 +213,6 @@ if __name__ == '__main__':
 
 import unittest
 from unittest.mock import patch
-from project_code import Statistic, Strength, User
 
 class TestStatistic(unittest.TestCase):
 

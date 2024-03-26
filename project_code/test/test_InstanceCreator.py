@@ -1,9 +1,6 @@
 import unittest
 from unittest.mock import MagicMock
-from project_code.src.InstanceCreator import InstanceCreator
-from project_code.src.UserFactory import UserFactory
-from project_code.src.UserInputParser import UserInputParser
-from project_code.src.User import User
+
 
 class TestInstanceCreator(unittest.TestCase):
     def setUp(self):
