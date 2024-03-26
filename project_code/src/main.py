@@ -7,6 +7,16 @@ from project_code.src.UserInputParser import UserInputParser
 from project_code.src.InstanceCreator import InstanceCreator
 from project_code.src.UserFactory import UserFactory
 
+from project_code.src.UserInputParser import UserInputParser
+
+def create_parser():
+    return UserInputParser()
+
+def start_game():
+    parser = create_parser()
+    user_factory = UserFactory()
+    instance_creator = InstanceCreator(user_factory, parser)
+
 def start_game():
     parser = UserInputParser()
     user_factory = UserFactory()
@@ -37,7 +47,7 @@ if __name__ == '__main__':
 
 class Location:
 
-import json
+    import json
 
 # List of location names
 location_names = [
@@ -59,12 +69,12 @@ with open("location_names.json", "w") as file:
 
 import random
 
-    def __init__(self, name, parser, number_of_events: int = 1):
+def __init__(self, name, parser, number_of_events: int = 1):
         self.name = name
         self.parser = parser
         self.events = [Event(self.parser) for _ in range(number_of_events)]
 
-    def create_custom_event_from_static_text_file(self, file_path):
+def create_custom_event_from_static_text_file(self, file_path):
         # load json file from path
         with open(file_path, "r") as file:
             data = json.load(file)
@@ -85,13 +95,18 @@ location_names = [
     "City of Mutton"
 ]
 
+import random
+
+# Assuming you have a function create_parser() that creates the parser
+parser = create_parser()
+
+# Assuming location_names is already defined
 locations = [Location(name, parser) for name in random.sample(location_names, 10)]
 
-
-    def __init__(self, parser, number_of_events: int = 1):
+def __init__(self, parser, number_of_events: int = 1):
         self.parser = parser
         self.events = [Event(self.parser) for _ in range(number_of_events)]
-    pass
+pass
 
 
 
@@ -233,8 +248,20 @@ def encounter_with_guz(party):
 # party_member_2 = PartyMember("Character 2", 12, 15)  # Example stats
 # party = [party_member_1, party_member_2]  # Example party
 
+def create_party():
+    character_list = {"Maggie": (10, 9, 5, 6, 10, 8, 10, 3, 10, 9),
+    "Owen": (9, 9, 5, 3, 9, 1, 9, 9, 2, 9),
+    "Priscilla": (8, 7, 8, 8, 4, 8, 5, 8, 1, 8),
+    "Grace": (7, 1, 7, 7, 5, 3, 7, 4, 7, 2),
+    "Ashley": (6, 7, 8, 6, 6, 6, 7, 8, 6, 3),
+    "Sydney": (5, 6, 7, 5, 5, 5, 3, 7, 5, 5),
+    "Maya": (4, 5, 6, 4, 5, 6, 4, 4, 4, 4),
+    "Marcus": (3, 5, 4, 3, 3, 6, 3, 4, 3, 5),
+    "David": (1, 1, 2, 2, 2, 2, 1, 1, 2, 2)}
 
+    return character_list
 
+party = create_party()
 encounter_frantic_sheep(party)
 def navigating_through_ewe_ok_village(party):
     print("Navigating through Ewe-ok Village:")
@@ -352,21 +379,70 @@ from project_code.src.Statistic import *
 
 
 
+import random
+
+# Importing the required classes from project_code.src.Statistic
+from project_code.src.Statistic import Strength, Dexterity, Constitution, Vitality, Endurance, \
+    Intelligence, Wisdom, Knowledge, Willpower, Spirit
+
+
 class Character:
-    def __init__(self, name: str, strength: int, dexterity: int, constitution: int,
-                 vitality: int, endurance: int, intelligence: int, wisdom: int,
-                 knowledge: int, willpower: int, spirit: int):
+    def __init__(self, name: str):
         self.name = name
-        self.strength: Strength = Strength(self, strength)
-        self.dexterity: Dexterity = Dexterity(self, dexterity)
-        self.constitution: Constitution = Constitution(self, constitution)
-        self.vitality: Vitality = Vitality(self, vitality)
-        self.endurance: Endurance = Endurance(self, endurance)
-        self.intelligence: Intelligence = Intelligence(self, intelligence)
-        self.wisdom: Wisdom = Wisdom(self, wisdom)
-        self.knowledge: Knowledge = Knowledge(self, knowledge)
-        self.willpower: Willpower = Willpower(self, willpower)
-        self.spirit: Spirit = Spirit(self, spirit)
+        self.strength: Strength = None
+        self.dexterity: Dexterity = None
+        self.constitution: Constitution = None
+        self.vitality: Vitality = None
+        self.endurance: Endurance = None
+        self.intelligence: Intelligence = None
+        self.wisdom: Wisdom = None
+        self.knowledge: Knowledge = None
+        self.willpower: Willpower = None
+        self.spirit: Spirit = None
+        self.generate_statistics()
+
+class Statistic:
+    def __init__(self, value):
+        self.value = value
+
+    def __str__(self):
+        return str(self.value)
+
+    def increase(self, amount):
+        self.value += amount
+
+    def decrease(self, amount):
+        self.value -= amount
+
+def Strength(value):
+    return Statistic(value)
+
+def Dexterity(value):
+    return Statistic(value)
+
+def Constitution(value):
+    return Statistic(value)
+
+def Vitality(value):
+    return Statistic(value)
+
+def Endurance(value):
+    return Statistic(value)
+
+def Intelligence(value):
+    return Statistic(value)
+
+def Wisdom(value):
+    return Statistic(value)
+
+def Knowledge(value):
+    return Statistic(value)
+
+def Willpower(value):
+    return Statistic(value)
+
+def Spirit(value):
+    return Statistic(value)
 
 
 # Define the base statistics for each character
