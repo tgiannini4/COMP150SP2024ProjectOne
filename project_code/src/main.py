@@ -111,7 +111,6 @@ def __init__(self, parser, number_of_events: int = 1):
 pass
 
 
-
 from enum import Enum
 
 class EventStatus(Enum):
