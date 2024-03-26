@@ -183,6 +183,20 @@ def skill_check(character, skill, difficulty):
     else:
         return False
 
+def create_party():
+    character_list = {"Maggie": (10, 9, 5, 6, 10, 8, 10, 3, 10, 9),
+    "Owen": (9, 9, 5, 3, 9, 1, 9, 9, 2, 9),
+    "Priscilla": (8, 7, 8, 8, 4, 8, 5, 8, 1, 8),
+    "Grace": (7, 1, 7, 7, 5, 3, 7, 4, 7, 2),
+    "Ashley": (6, 7, 8, 6, 6, 6, 7, 8, 6, 3),
+    "Sydney": (5, 6, 7, 5, 5, 5, 3, 7, 5, 5),
+    "Maya": (4, 5, 6, 4, 5, 6, 4, 4, 4, 4),
+    "Marcus": (3, 5, 4, 3, 3, 6, 3, 4, 3, 5),
+    "David": (1, 1, 2, 2, 2, 2, 1, 1, 2, 2)}
+
+    return character_list
+
+party = create_party()
 def encounter_frantic_sheep(party):
     print("Encounter with the Frantic Sheep:")
     print("As your party is walking through Ewe-ok Village, you come across a sheep frantically running towards you.")
@@ -241,28 +255,6 @@ def encounter_with_guz(party):
             else:
                 print("Guz defeats your party and turns Finethir into a mutton dinner. Although most of your party made it through with minor injuries, Guz seemed to particularly dislike you, and he kills you. The end.")
 
-# Define other functions for remaining events
-
-# # Define party members
-# party_member_1 = PartyMember("Character 1", 14, 10)  # Example stats
-# party_member_2 = PartyMember("Character 2", 12, 15)  # Example stats
-# party = [party_member_1, party_member_2]  # Example party
-
-def create_party():
-    character_list = {"Maggie": (10, 9, 5, 6, 10, 8, 10, 3, 10, 9),
-    "Owen": (9, 9, 5, 3, 9, 1, 9, 9, 2, 9),
-    "Priscilla": (8, 7, 8, 8, 4, 8, 5, 8, 1, 8),
-    "Grace": (7, 1, 7, 7, 5, 3, 7, 4, 7, 2),
-    "Ashley": (6, 7, 8, 6, 6, 6, 7, 8, 6, 3),
-    "Sydney": (5, 6, 7, 5, 5, 5, 3, 7, 5, 5),
-    "Maya": (4, 5, 6, 4, 5, 6, 4, 4, 4, 4),
-    "Marcus": (3, 5, 4, 3, 3, 6, 3, 4, 3, 5),
-    "David": (1, 1, 2, 2, 2, 2, 1, 1, 2, 2)}
-
-    return character_list
-
-party = create_party()
-encounter_frantic_sheep(party)
 def navigating_through_ewe_ok_village(party):
     print("Navigating through Ewe-ok Village:")
     # Details of navigating through Ewe-ok Village
