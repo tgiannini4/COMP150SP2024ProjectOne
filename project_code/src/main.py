@@ -1,11 +1,11 @@
 # main.py
+# import project_code
+# from project_code.src.UserInputParser import UserInputParser
+# from project_code.src.InstanceCreator import InstanceCreator
+# from project_code.src.UserFactory import UserFactory
 import sys
-import random
-import project_code
 from typing import List
-from project_code.src.UserInputParser import UserInputParser
-from project_code.src.InstanceCreator import InstanceCreator
-from project_code.src.UserFactory import UserFactory
+import random
 
 def create_parser():
     return UserInputParser()
@@ -368,17 +368,6 @@ class Party:
             event.resolve_choice(self, member, None)
 
 
-from project_code.src.Statistic import *
-
-
-
-import random
-
-# Importing the required classes from project_code.src.Statistic
-from project_code.src.Statistic import Strength, Dexterity, Constitution, Vitality, Endurance, \
-    Intelligence, Wisdom, Knowledge, Willpower, Spirit
-
-
 class Character:
     def __init__(self, name: str):
         self.name = name
@@ -588,7 +577,6 @@ class Game:
         else:
             return False
 
-
 class User:
 
     def __init__(self, parser, username: str, password: str, legacy_points: int = 0):
@@ -604,6 +592,52 @@ class User:
 
     def save_game(self):
         pass
+
+
+class UserInputParser:
+
+    def __init__(self):
+        self.style = "console"
+
+    def parse(self, prompt) -> str:
+        response: str = input(prompt)
+        return response
+
+
+class UserFactory:
+
+    @staticmethod
+    def create_user(parser: UserInputParser) -> User:
+        username = parser.parse("Enter a username: ")
+        password = parser.parse("Enter a password: ")
+        # Here you can add more logic as needed, e.g., validate input
+        return User(parser, username=username, password=password)
+
+
+class InstanceCreator:
+
+    def __init__(self, user_factory: UserFactory, parser: UserInputParser):
+        self.user_factory = user_factory
+        self.parser = parser
+
+    def _new_user_or_login(self) -> User:
+        response = self.parser.parse("Create a new username or login to an existing account?")
+        if "login" in response:
+            return self._load_user()
+        else:
+            return self.user_factory.create_user(self.parser)
+
+    def get_user_info(self, response: str) -> User | None:
+        if "yes" in response:
+            return self._new_user_or_login()
+        else:
+            return None
+
+    def _load_user(self) -> User:
+        pass
+
+
+
 
 
 class UserInputParser:

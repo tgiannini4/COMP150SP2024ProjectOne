@@ -213,5 +213,52 @@ class TestProjectCode(unittest.TestCase):
 if __name__ == '__main__':
     unittest.main()
 
+import unittest
+from unittest.mock import patch
+from project_code import Statistic, Strength, User
+
+class TestStatistic(unittest.TestCase):
+
+    def test_statistic_creation(self):
+        stat = Statistic(50)
+        self.assertEqual(stat.value, 50)
+        self.assertIsNone(stat.description)
+        self.assertEqual(stat.min_value, 0)
+        self.assertEqual(stat.max_value, 100)
+
+    def test_statistic_increase(self):
+        stat = Statistic(50)
+        stat.increase(20)
+        self.assertEqual(stat.value, 70)
+        stat.increase(50)  # Trying to increase beyond max_value
+        self.assertEqual(stat.value, 100)  # Value should be capped at max_value
+
+    def test_statistic_decrease(self):
+        stat = Statistic(50)
+        stat.decrease(20)
+        self.assertEqual(stat.value, 30)
+        stat.decrease(40)  # Trying to decrease beyond min_value
+        self.assertEqual(stat.value, 0)  # Value should be capped at min_value
+
+class TestStrength(unittest.TestCase):
+
+    def test_strength_creation(self):
+        strength = Strength(80)
+        self.assertEqual(strength.value, 80)
+        self.assertEqual(strength.description, "Strength is a measure of physical power.")
+
+    def test_strength_increase(self):
+        strength = Strength(80)
+        strength.increase(20)
+        self.assertEqual(strength.value, 100)  # Value should be capped at max_value
+
+    def test_strength_decrease(self):
+        strength = Strength(80)
+        strength.decrease(90)
+        self.assertEqual(strength.value, 0)  # Value should be capped at min_value
+
+if __name__ == '__main__':
+    unittest.main()
+
 
 
