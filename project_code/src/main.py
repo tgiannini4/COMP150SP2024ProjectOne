@@ -1,7 +1,7 @@
 # main.py
 import sys
 import random
-import project_code.src
+import project_code
 from typing import List
 from project_code.src.UserInputParser import UserInputParser
 from project_code.src.InstanceCreator import InstanceCreator
