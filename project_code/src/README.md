@@ -1,5 +1,5 @@
 # How to play the game:
-Welcome to Battle of the Bands RPG!! This is an exciting role-playing game where you take on the role of a musician competing in epic battles against other bands to claim the title of the ultimate rock stars. Create your band, explore different venues, and battle other bands! Get ready to rock and roll as you embark on a journey filled with music, competition, and fame!
+Welcome to Battle of the Bands RPG!! Battle of the Bands RPG is an interactive text-based game where you step into the shoes of a band manager aiming to lead your band to victory in a fierce Battle of the Bands competition. With strategic decision-making and a keen eye for talent, you'll form a band, choose a band name, select band members, and compete against rival bands for fame and glory. 
 
 To play the game, follow these steps: (might need to change)
 
@@ -36,3 +36,6 @@ Resonance Retreat
  Voltage Vandals
  Sonic Surge
  Chord Chaos
+
+## Ready to Rock?
+Enter the Battle of the Bands RPG arena and lead your band to stardom! Will you take the stage by storm and claim victory, or will your dreams of musical glory be silenced? The fate of your band lies in your hands!

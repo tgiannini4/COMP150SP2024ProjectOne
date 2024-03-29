@@ -1,15 +1,104 @@
-# main.py
-# import project_code
-# from project_code.src.UserInputParser import UserInputParser
-# from project_code.src.InstanceCreator import InstanceCreator
-# from project_code.src.UserFactory import UserFactory
+import json
 import sys
-import random
-# import project_code
 from typing import List
-# from project_code.src.UserInputParser import UserInputParser
-# from project_code.src.InstanceCreator import InstanceCreator
-# from project_code.src.UserFactory import UserFactory
+import random
+def game():
+    ans = input('Would you like to play Battle of the Bands? (yes/no)')
+    if ans.lower() == 'yes':
+        print('Welcome to Battle of the Bands!!')
+        start = True 
+        inventory = []
+
+        print("You have been chosen to be the manager of the next hottest band for Resonance Records!")
+        band_name = input("Before we begin, please enter your band's name: ")
+
+
+        # List of potential band members with their roles
+        band_members = {
+            "Beatrice Groove": "Percussionist",
+            "Harmony Heart": "Vocalist",
+            "Melody Muse": "Pianist",
+            "Axel Blaze": "Lead Guitarist",
+            "Harmony Harmonica": "Harmonica Player",
+            "Quinn Quintet": "Multi-Instrumentalist",
+            "Felix Bassline": "Bassist",
+            "Echo Eden": "Vocalist",
+            "Amber Strings": "Violinist"
+        }
+
+        print(f"Great choice! Your band {band_name} is about to rock the stage!")
+        print("But before Resonance Records signs your band, you have to prove your band has what it takes in the Battle of the Bands competition!")
+        print("To enter the Battle of the Bands competition, first you have to form a band. Select 4 musicians for your band:")
+
+        user_band_members = []
+
+        while len(user_band_members) < 4:
+            print("\nAvailable band members:")
+            for member, role in band_members.items():
+                print(f"{member} - {role}")
+            choice = input("Enter the name of the musician you want to add to your band: ")
+            if choice in band_members.keys():
+                if choice not in user_band_members:
+                    user_band_members.append(choice)
+                    print(f"{choice} has been added to your band.")
+                else:
+                    print(f"{choice} is already in your band.")
+            else:
+                print("Invalid musician. Please select from the available options.")
+
+        # Display selected band members
+        print("\nYour selected band members are:")
+        for member in user_band_members:
+            print(member)
+        
+        band_venues = [
+            "The Melody Mansion",
+            "Tempo Terrace",
+            "Crescendo Clubhouse",
+            "Harmonic Hideaway",
+            "Resonance Retreat"
+        ]
+
+        # Prompt the user to select a band venue
+        print("Please select a band venue from the following list:")
+        for venue in band_venues:
+            print("-", venue)
+        selected_venue = input("Enter the name of the band venue you want to perform at: ")
+
+        # Validate the user's choice
+        if selected_venue in band_venues:
+            print(f"Great choice! Your band {band_name} will perform at {selected_venue}.")
+        else:
+            print("Invalid venue selection. Please choose from the available options.")
+
+    
+
+game()
+
+# to do:
+# create login system
+# create legacy system--maybe you can start w/ better stats or luck
+# create events with rival bands 
+# maybe create inventory system? (idk)
+# add skills/stats 
+# include concepts, functions, and classes as described in the project description
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 def parse_user_input():
     """
@@ -103,17 +192,12 @@ def create_custom_event_from_static_text_file(self, file_path):
 
 # List of location names
 location_names = [
-    "Temple of the Sheep",
-    "Baaaadmans Village",
-    "Sheep Desert",
-    "Tomb of Lambs",
-    "Ewe-ok Village",
-    "The Lost Valley",
-    "The Palace of Dolly",
-    "Enchanted Woods",
-    "Mary's Dreamy Wonderland",
-    "City of Mutton"
-]
+    "The Melody Mansion",
+    "Tempo Terrace",
+    "Crescendo Clubhouse",
+    "Harmonic Hideaway",
+    "Resonance Retreat"
+    ]
 
 import random
 
@@ -177,8 +261,6 @@ class Event:
 
 
 
-
-
 #### Events:
 import random
 
@@ -215,163 +297,7 @@ def create_party():
 
     return character_list
 
-party = create_party()
-def encounter_frantic_sheep(party):
-    print("Encounter with the Frantic Sheep:")
-    print("As your party is walking through Ewe-ok Village, you come across a sheep frantically running towards you.")
-    print("It bleats desperately, catching your attention. As it approaches, you notice Scroll of Speak to Animals.")
-    choice = input("Do you and your party activate this scroll? (Yes/No): ")
-    if choice.lower() == "yes":
-        revelation_of_finethir_shinebright(party)
-    else:
-        print("You and your party continue walking onwards and enjoy a nice evening at the local tavern and continue travelling to Baaaadmans Village. The end.")
 
-def revelation_of_finethir_shinebright(party):
-    print("Revelation of Finethir Shinebright's True Identity:")
-    print("Upon activating the Scroll of Speak to Animals, the sheep reveals itself to be Finethir Shinebright, a renowned wizard of transmutation.")
-    # Details of conversation with Finethir Shinebright
-    # Implement choice for continuing conversation with Finethir Shinebright
-    choice = input("Do you and your party still continue to converse with him? (Yes/No): ")
-    if choice.lower() == "yes":
-        learning_of_ahmed_nokes_betrayal(party)
-    else:
-        print("You and your party have had enough of this talking sheep and you continue walking onwards and enjoy a nice evening at the local tavern and continue travelling to the City of Mutton. The end.")
-
-def learning_of_ahmed_nokes_betrayal(party):
-    print("Learning of Ahmed Noke's Betrayal:")
-    # Details of conversation with Finethir about Ahmed Noke's betrayal
-    # Implement choice for agreeing to help Finethir
-    choice = input("Do you agree to help Finethir retrieve the Wand of True Polymorph? (Yes/No): ")
-    if choice.lower() == "yes":
-        encounter_with_guz(party)
-    else:
-        print("You and your party decide to no longer entertain this talking sheep and you continue walking onwards and enjoy a nice evening at the local tavern. The end.")
-
-def encounter_with_guz(party):
-    print("Encounter with Guz:")
-    # Details of encounter with Guz
-    # Implement choice for engaging Guz or not
-    choice = input("Do you engage with Guz? (Yes/No): ")
-    if choice.lower() == "yes":
-        # Implement skill check based on strength
-        if skill_check(party[0], "strength", 15):
-            print("You and your party defeat Guz. Seeing that Finethir is currently being targeted by assassins to turn him into a mutton dinner, you and your party decide to find Noke ASAP.")
-        else:
-            print("Guz defeats your party and turns Finethir into a mutton dinner. Although most of your party made it through with minor injuries, Guz seemed to particularly dislike you, and he kills you. The end.")
-    else:
-        # Implement choice for talking it out with Guz
-        choice = input("Do you try to talk it out with him? (Yes/No): ")
-        if choice.lower() == "yes":
-            # Implement skill check based on intelligence
-            if skill_check(party[0], "intelligence", 12):
-                print("You and your party convince Guz not to attack and continue on your way.")
-            else:
-                print("Guz is enraged, particularly at you, and he kills you. The end.")
-        else:
-            # Implement skill check based on strength
-            if skill_check(party[0], "strength", 15):
-                print("You and your party defeat Guz. Seeing that Finethir is currently being targeted by assassins to turn him into a mutton dinner, you and your party decide to find Noke ASAP.")
-            else:
-                print("Guz defeats your party and turns Finethir into a mutton dinner. Although most of your party made it through with minor injuries, Guz seemed to particularly dislike you, and he kills you. The end.")
-
-def navigating_through_ewe_ok_village(party):
-    print("Navigating through Ewe-ok Village:")
-    # Details of navigating through Ewe-ok Village
-    # Implement choice for asking advice
-    choice = input("Do you ask for advice at the Temple of the Sheep? (Yes/No): ")
-    if choice.lower() == "yes":
-        print("You and your party learn that the Wand of True Polymorph is suspected to be in poor condition.")
-        print("In addition, you also learn that Noke has become a paranoid recluse, due to his fear meeting the same fate as Finethir.")
-    else:
-        print("You and your party receive no new information. You happen to see some shady individuals lurking around the main altar in the Temple of the Sheep. They seem to be following you and your party with their eyes.")
-
-def confrontation_with_nokes_bodyguards(party):
-    print("Confrontation with Noke's Bodyguards:")
-    # Details of confrontation with Noke's bodyguards
-    # Implement choice for engaging or bypassing/negotiating with the bodyguards
-    choice = input("Do you engage in a confrontation with Noke's bodyguards? (Yes/No): ")
-    if choice.lower() == "yes":
-        # Implement skill check for confrontation
-        if skill_check(party[0], "strength", 15):
-            print("You and your party defeat the bodyguards. Noke seems to have disappeared into his bedroom.")
-        else:
-            print("You and your party die along with Finethir. The end.")
-    else:
-        # Implement skill check for bypassing/negotiating
-        if skill_check(party[0], "stealth", 15):  # Assuming stealth skill for simplicity
-            print("You and your party were able to sneak past the guards without them noticing you. Noke seems to have disappeared into his bedroom.")
-        else:
-            print("As you and your party are sneaking around, you knock over a test tube and it shatters, creating a noise that draws the attention of the bodyguards. They attack before you and your party are prepared, killing you and your party. The end.")
-
-def battle_with_nokes_bed_dragon_wyrmling(party):
-    print("Battle with Noke's Bed Dragon Wyrmling:")
-    # Details of battle with Noke's bed dragon wyrmling
-    # Implement choice for engaging or bypassing/neutralizing the dragon
-    choice = input("Do you engage with Noke's peculiar pet dragon? (Yes/No): ")
-    if choice.lower() == "yes":
-        # Implement skill check for battle
-        if skill_check(party[0], "strength", 15):
-            print("You and your party successfully slay the dragon, and you notice the Wand of True Polymorph laying on the ground. You continue on to face Noke.")
-        else:
-            print("The dragon absolutely destroys you and your party. You die. The end.")
-    else:
-        # Implement skill check for bypassing/neutralizing the dragon
-        if skill_check(party[0], "dexterity", 15):  # Assuming dexterity skill for simplicity
-            print("You and your party successfully dodge all of the dragon's splinter attacks, and you notice the Wand of True Polymorph laying on the ground. You continue on to face Noke.")
-        else:
-            print("You are extremely wounded, and you see the Wand of True Polymorph laying on the ground. You use the last bit of strength to reach for it. So close, yet so far. Noke grabs it before you and he transforms you into a Gibbering Mouther, and you die. The end.")
-
-def retrieve_the_wand_of_true_polymorph(party):
-    print("Retrieve the Wand of True Polymorph:")
-    # Details of retrieving the Wand of True Polymorph
-    # Implement choice for using the wand to cast a spell on Noke
-    choice = input("Do you use it to cast a spell on Noke? (Yes/No): ")
-    if choice.lower() == "yes":
-        # Implement luck check for using the wand
-        if random.random() < 0.5:  # 50% chance of success
-            print("Although your luck should allow you to transform Noke into a sheep (as you intended), the wand malfunctions due to its poor condition and Noke is transformed into a Gibbering Mouther. He dies shortly after.")
-        else:
-            print("Due to your inexperience with the wand, Noke is transformed into a Gibbering Mouther. He dies.")
-    else:
-        print("Noke grabs it from your hand and he transforms you into a Gibbering Mouther. You die. The end.")
-
-def restoration_of_finethir_shinebright(party):
-    print("Restoration of Finethir Shinebright:")
-    # Details of restoring Finethir Shinebright
-    # Implement choice for reversing the spell
-    choice = input("Do you reverse the spell to restore Finethir Shinebright? (Yes/No): ")
-    if choice.lower() == "yes":
-        # Implement chance check for successful restoration
-        if random.random() < 0.8:  # 80% chance of success
-            print("You use it to reverse the polymorph spell, restoring him to his true form as a wizard.")
-            resolution_and_future_plans(party)
-        else:
-            print("Shinebright dies. Does your party honor his dying wish to leave the tower more-or-less intact?")
-            # Implement further choices based on the above outcome
-            # Define further actions based on player's choice
-    else:
-        print("Shinebright accepts your decision but will not give up his hope entirely.")
-        print("He takes back his old home in the tower and works towards a way to remove his curse (despite not having opposable thumbs).")
-        print("He is upset, but still recognizes he is in debt to your party for your help. The end.")
-
-def resolution_and_future_plans(party):
-    print("Resolution and Future Plans:")
-    # Details of resolution and future plans
-    # Implement further dialogue or actions for the party's reflection and discussion
-def resolution_and_future_plans(party):
-    print("Resolution and Future Plans:")
-    print("With Finethir's gratitude and promises of rewards, your party reflects on the adventure and discusses potential future endeavors with their newly restored ally.")
-    print("Perhaps there are still mysteries to uncover in Ewe-ok Village or beyond.")
-    choice = input("Do you wish to discuss further plans with Finethir? (Yes/No): ")
-    if choice.lower() == "yes":
-        print("You and your party spend hours discussing potential future quests, adventures, and alliances.")
-        print("Finethir shares some insights about ancient ruins rumored to hold powerful artifacts, as well as possible threats lurking in nearby forests.")
-        print("With renewed determination, your party sets forth on a new journey, ready to face whatever challenges lie ahead.")
-    else:
-        print("Deciding to rest and recuperate for a while, your party bids farewell to Finethir and sets up camp for the night.")
-        print("As the fire crackles and stars twinkle above, you share stories of past adventures and dreams of future conquests.")
-        print("Tomorrow is another day, and you are ready to face what it brings.")
-    print("The end.")
 
 class Party:
     def __init__(self, members):
