@@ -2,7 +2,14 @@ import json
 import sys
 from typing import List
 import random
+def login():
+    username = input("Enter your username: ")
+    password = input("Enter your password: ")
+
 def game():
+    if not login():
+        return
+    
     ans = input('Would you like to play Battle of the Bands? (yes/no)')
     if ans.lower() == 'yes':
         print('Welcome to Battle of the Bands!!')
