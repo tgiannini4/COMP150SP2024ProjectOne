@@ -49,6 +49,7 @@ class Band:
         return total_performance, total_charisma, total_luck
 class Game:
     def __init__(self):
+
         self.band = Band()
         self.rival_bands = ["Harmony Havoc", "Serenade Syndicate", "Voltage Vandals", "Sonic Surge", "Chord Chaos"]
         self.user_accounts = {}
@@ -71,7 +72,8 @@ class Game:
         """Login an existing user."""
         if username in self.user_accounts and self.user_accounts[username]["password"] == password:
             print("Login successful!")
-            self.logged_in_user = username  # Set the logged-in user
+            self.logged_in_user = username
+            self.check_legacy_points() 
             return True
         else:
             print("Invalid username or password. Please try again.")
@@ -79,7 +81,8 @@ class Game:
 
     def earn_legacy_points(self, points: int):
         """Earn legacy points."""
-        self.user_accounts[self.logged_in_user]["legacy_points"] += points
+        #self.user_accounts[self.logged_in_user]["legacy_points"] += points
+        self.legacy_points += points
 
     def spend_legacy_points(self, points: int):
         """Spend legacy points if enough are available."""
@@ -88,10 +91,17 @@ class Game:
             print(f"{self.logged_in_user} spent {points} legacy points.")
         else:
             print(f"{self.logged_in_user} does not have enough legacy points.")
+        
     
+    # def check_legacy_points(self):
+    #     """Check the current amount of legacy points for the logged-in user."""
+    #     print(f"{self.logged_in_user} has {self.user_accounts[self.logged_in_user]['legacy_points']} legacy points.")
+
     def check_legacy_points(self):
         """Check the current amount of legacy points for the logged-in user."""
-        print(f"{self.logged_in_user} has {self.user_accounts[self.logged_in_user]['legacy_points']} legacy points.")
+        legacy_points = self.user_accounts[self.logged_in_user]['legacy_points']
+        print(f"{self.logged_in_user} has {legacy_points} legacy points.")
+
 
     def generate_event(self, band_stats):
         total_performance, total_charisma, total_luck = band_stats
@@ -274,7 +284,7 @@ class Game:
         print("\nResolution event:")
         print("-" * 30)
         # Simulate winning or losing based on random chance
-        if random.random() < 0.5:  # 50% chance of winning
+        if random.random() < 0.75:  # 50% chance of winning
             print("Congratulations! Your band has won the Battle of the Bands competition!")
             self.earn_legacy_points(100)  # Example: Award legacy points for winning
             print("You've earned 100 legacy points for winning the competition!")

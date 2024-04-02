@@ -8,6 +8,8 @@ To play the game, follow these steps: (might need to change)
 3. Run the main Python file using python main.py.
 4. Follow the prompts in the terminal to make choices and progress through the game.
 
+## IMPORTANT: The entries for band members and venues are case sensitive. Please only type in the first and last name exactly as they are shown in the list. For the location, please only type the name as it appears on the screen. Thank you. 
+
 ## Description of Project
 In this project, we have created a simplified version of Dungeons and Dragons that is played entirely in the terminal. The game features core mechanics such as party management, character attributes, random events, and skill checks. Each playthrough offers a unique experience, and players can accrue legacy traits and bonuses to aid them in future adventures.
 
