@@ -1,26 +1,16 @@
 # to do:
 # create login system
-# create legacy system--maybe you can start w/ better stats or luck
-# create events with rival bands 
+# create legacy system--maybe user can start w/ better stats or luck 
 # maybe create inventory system? (idk)
 # add skills/stats 
 # include concepts, functions, and classes as described in the project description
-
+# conclusion for game?
 import random
 
 def login():
-    username = input("Enter your username: ")
-    password = input("Enter your password: ")
-    
-    # Here you can implement the logic to validate the username and password
-    # For simplicity, let's assume any username and password combination is valid
-    # You can replace this with your actual validation logic
-    
-    # For demonstration purposes, let's check if both fields are non-empty
-    if username and password:
-        return True
-    else:
-        return False
+    return True
+#     username = input("Enter your username: ")
+#     password = input("Enter your password: ")
 
 def calculate_band_stats(user_band_members, band_members_stats):
     total_performance = sum(band_members_stats[member]["performance"] for member in user_band_members)
@@ -44,7 +34,7 @@ def generate_event(band_stats, rival_bands):
         if rival_band in rival_bands and condition:
             rival_band_event = description
             break
-
+    print("Rival band event:", rival_band_event)
     events = [
         ("Your band's exceptional performance wows the audience, earning you extra points!", total_performance > 25),
         ("Your band's charismatic stage presence captivates the judges, earning you bonus points!", total_charisma > 20),
@@ -54,12 +44,13 @@ def generate_event(band_stats, rival_bands):
         rival_band_event
     ]
 
+    print("All events:", events)  # Debugging print
     possible_events = [event[0] for event in events if event[1] is not None]
+    print("Possible events:", possible_events)  # Debugging print
     if possible_events:
         return random.choice(possible_events)
     else:
         return "No notable events occur during your performance."
-
 def generate_decision_event():
     decision_events = [
         ("A rival band, Harmony Havoc, has spread false rumors about your band, causing doubt among your fans. Do you:\n1. Ignore the rumors and focus on your performance.\n2. Address the rumors publicly to clear your band's name.", "Harmony Havoc")
@@ -638,22 +629,6 @@ class User:
 
     def save_game(self):
         pass
-
-    def earn_legacy_points(self, points: int):
-        """Earn legacy points."""
-        self.legacy_points += points
-
-    def spend_legacy_points(self, points: int):
-        """Spend legacy points if enough are available."""
-        if self.legacy_points >= points:
-            self.legacy_points -= points
-            print(f"{self.username} spent {points} legacy points.")
-        else:
-            print(f"{self.username} does not have enough legacy points.")
-
-    def check_legacy_points(self):
-        """Check the current amount of legacy points."""
-        print(f"{self.username} has {self.legacy_points} legacy points.")
 
 
 class UserInputParser:
