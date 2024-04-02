@@ -5,7 +5,7 @@ To play the game, follow these steps: (might need to change)
 
 1. Clone the forked repository to your local machine.
 2. Navigate to the project directory.
-3. Run the main Python file using python UserFactory.py.
+3. Run the main Python file using python main.py.
 4. Follow the prompts in the terminal to make choices and progress through the game.
 
 ## Description of Project
