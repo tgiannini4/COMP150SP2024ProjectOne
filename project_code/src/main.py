@@ -630,6 +630,22 @@ class User:
     def save_game(self):
         pass
 
+    def earn_legacy_points(self, points: int):
+        """Earn legacy points."""
+        self.legacy_points += points
+
+    def spend_legacy_points(self, points: int):
+        """Spend legacy points if enough are available."""
+        if self.legacy_points >= points:
+            self.legacy_points -= points
+            print(f"{self.username} spent {points} legacy points.")
+        else:
+            print(f"{self.username} does not have enough legacy points.")
+
+    def check_legacy_points(self):
+        """Check the current amount of legacy points."""
+        print(f"{self.username} has {self.legacy_points} legacy points.")
+
 
 class UserInputParser:
 

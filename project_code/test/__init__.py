@@ -257,5 +257,58 @@ class TestStrength(unittest.TestCase):
 if __name__ == '__main__':
     unittest.main()
 
+import unittest
 
+class TestUserLegacyPoints(unittest.TestCase):
+    def setUp(self):
+        self.parser = None  # Mock parser object for simplicity
+        self.user = User(self.parser, "test_user", "password", 100)  # Create a user with 100 legacy points
 
+    def test_win_battle(self):
+        initial_points = self.user.legacy_points
+        self.user.current_game.simulate_battle_outcome("win")  # Simulate winning a battle
+        self.user.save_game()  # Save the game
+        self.assertEqual(self.user.legacy_points, initial_points + 50)  # Assert legacy points increased by 50 for winning
+
+    def test_lose_battle(self):
+        initial_points = self.user.legacy_points
+        self.user.current_game.simulate_battle_outcome("lose")  # Simulate losing a battle
+        self.user.save_game()  # Save the game
+        self.assertEqual(self.user.legacy_points, initial_points - 20)  # Assert legacy points decreased by 20 for losing
+
+if __name__ == '__main__':
+    unittest.main()
+
+import unittest
+
+class TestBand(unittest.TestCase):
+    def setUp(self):
+        self.parser = None  # Mock parser object for simplicity
+        self.band1 = Band(self.parser, "Band 1", 500)  # Create Band 1 with 500 legacy points
+        self.band2 = Band(self.parser, "Band 2", 300)  # Create Band 2 with 300 legacy points
+
+    def test_defeat_other_band(self):
+        result = self.band1.defeat_other_band(self.band2)  # Band 1 tries to defeat Band 2
+        self.assertTrue(result)  # Band 1 should defeat Band 2 since it has more legacy points
+
+    def test_not_enough_legacy_points_to_defeat(self):
+        result = self.band2.defeat_other_band(self.band1)  # Band 2 tries to defeat Band 1
+        self.assertFalse(result)  # Band 2 should not defeat Band 1 since it has fewer legacy points
+
+if __name__ == '__main__':
+    unittest.main()    
+
+import unittest
+
+class TestBand(unittest.TestCase):
+    def setUp(self):
+        self.parser = None  # Mock parser object for simplicity
+        self.band1 = Band(self.parser, "Band 1", 500)  # Create Band 1 with 500 legacy points
+        self.band2 = Band(self.parser, "Band 2", 500)  # Create Band 2 with 500 legacy points
+
+    def test_equal_legacy_points(self):
+        result = self.band1.defeat_other_band(self.band2)  # Band 1 tries to defeat Band 2
+        self.assertFalse(result)  # Both bands have the same amount of legacy points, so no band should defeat the other
+
+if __name__ == '__main__':
+    unittest.main()
