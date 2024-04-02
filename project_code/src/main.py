@@ -9,9 +9,18 @@
 import random
 
 def login():
-    return True
-#     username = input("Enter your username: ")
-#     password = input("Enter your password: ")
+    username = input("Enter your username: ")
+    password = input("Enter your password: ")
+    
+    # Here you can implement the logic to validate the username and password
+    # For simplicity, let's assume any username and password combination is valid
+    # You can replace this with your actual validation logic
+    
+    # For demonstration purposes, let's check if both fields are non-empty
+    if username and password:
+        return True
+    else:
+        return False
 
 def calculate_band_stats(user_band_members, band_members_stats):
     total_performance = sum(band_members_stats[member]["performance"] for member in user_band_members)
