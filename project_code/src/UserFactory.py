@@ -1,4 +1,9 @@
 import random
+
+import unittest
+from unittest.mock import patch
+from io import StringIO
+
 def print_ascii_art():
     art = '''
 
@@ -196,30 +201,22 @@ if __name__ == "__main__":
 
 
 #tests
-import unittest
-from unittest.mock import patch
-from io import StringIO
-from game import Band, Game
 
 class TestBand(unittest.TestCase):
-    def setUp(self):
-        self.band = Band()
-
     def test_calculate_band_stats(self):
+        band = Band()
         user_band_members = ["Beatrice Groove", "Harmony Heart", "Melody Muse", "Axel Blaze"]
-        total_performance, total_charisma, total_luck = self.band.calculate_band_stats(user_band_members)
+        total_performance, total_charisma, total_luck = band.calculate_band_stats(user_band_members)
         self.assertEqual(total_performance, 30)
         self.assertEqual(total_charisma, 27)
         self.assertEqual(total_luck, 18)
 
 class TestGame(unittest.TestCase):
-    def setUp(self):
-        self.game = Game()
-
     @patch('builtins.input', side_effect=['yes', 'The Melody Mansion', 'Beatrice Groove', 'Harmony Heart', 'Melody Muse', 'Axel Blaze', '1'])
     @patch('sys.stdout', new_callable=StringIO)
     def test_play_game(self, mock_stdout, mock_input):
-        self.game.play()
+        game = Game()
+        game.play()
         output = mock_stdout.getvalue()
         self.assertIn('Welcome to Battle of the Bands!!', output)
         self.assertIn('Great choice! Your band will perform at The Melody Mansion.', output)
