@@ -1,7 +1,7 @@
 # How to play the game:
 Welcome to Battle of the Bands RPG!! Battle of the Bands RPG is an interactive text-based game where you step into the shoes of a band manager aiming to lead your band to victory in a fierce Battle of the Bands competition. With strategic decision-making and a keen eye for talent, you'll form a band, choose a band name, select band members, and compete against rival bands for fame and glory. 
 
-To play the game, follow these steps: (might need to change)
+To play the game, follow these steps:
 
 1. Clone the forked repository to your local machine.
 2. Navigate to the project directory.
