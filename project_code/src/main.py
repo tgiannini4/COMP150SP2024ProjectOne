@@ -1,7 +1,10 @@
+
 import random
 import unittest
 from unittest.mock import patch
 from io import StringIO
+import json
+
 def print_ascii_art():
     art = '''
                           ____         ___
@@ -15,7 +18,6 @@ def print_ascii_art():
 
         '''
     print(art)
-
 class Band:
     def __init__(self):
         self.band_members = {
@@ -49,14 +51,38 @@ class Band:
         return total_performance, total_charisma, total_luck
 class Game:
     def __init__(self):
-
         self.band = Band()
         self.rival_bands = ["Harmony Havoc", "Serenade Syndicate", "Voltage Vandals", "Sonic Surge", "Chord Chaos"]
-        self.user_accounts = {}
-        self.legacy_points = 0
         self.username = ""
         self.band_venue = ""
         self.band_members = []
+        self.user_accounts = self.load_user_accounts()
+        self.user_data = {}
+        self.logged_in_user = None
+
+    def load_user_data(self):
+        """Load user data."""
+        try:
+            with open('user_data.json', 'r') as file:
+                self.user_data = json.load(file)
+        except FileNotFoundError:
+            # Handle file not found error
+            print("User data file not found. Initializing with empty data.")
+
+
+    def load_user_accounts(self):
+        """Load user accounts from JSON file."""
+        try:
+            with open('user_accounts.json', 'r') as file:
+                return json.load(file)
+        except FileNotFoundError:
+            return {}  # Return empty dictionary if file not found
+
+    
+    def save_user_accounts(self):
+        """Save user accounts to JSON file."""
+        with open('user_accounts.json', 'w') as file:
+            json.dump(self.user_accounts, file, indent=4)
 
     def register_user(self, username, password):
         """Register a new user."""
@@ -78,29 +104,35 @@ class Game:
         else:
             print("Invalid username or password. Please try again.")
             return False
-
+    
     def earn_legacy_points(self, points: int):
         """Earn legacy points."""
-        #self.user_accounts[self.logged_in_user]["legacy_points"] += points
-        self.legacy_points += points
+        if self.logged_in_user in self.user_accounts:
+            self.user_accounts[self.logged_in_user]["legacy_points"] += points
+            self.save_user_accounts()  # Update JSON file after earning points
+
 
     def spend_legacy_points(self, points: int):
         """Spend legacy points if enough are available."""
-        if self.user_accounts[self.logged_in_user]["legacy_points"] >= points:
-            self.user_accounts[self.logged_in_user]["legacy_points"] -= points
-            print(f"{self.logged_in_user} spent {points} legacy points.")
-        else:
-            print(f"{self.logged_in_user} does not have enough legacy points.")
-        
+        if self.logged_in_user in self.user_accounts:
+            if self.user_accounts[self.logged_in_user]["legacy_points"] >= points:
+                self.user_accounts[self.logged_in_user]["legacy_points"] -= points
+                print(f"{self.logged_in_user} spent {points} legacy points.")
+                self.save_user_accounts()  # Update JSON file after spending points
+            else:
+                print(f"{self.logged_in_user} does not have enough legacy points.")
+
     
-    # def check_legacy_points(self):
-    #     """Check the current amount of legacy points for the logged-in user."""
-    #     print(f"{self.logged_in_user} has {self.user_accounts[self.logged_in_user]['legacy_points']} legacy points.")
+ 
 
     def check_legacy_points(self):
         """Check the current amount of legacy points for the logged-in user."""
-        legacy_points = self.user_accounts[self.logged_in_user]['legacy_points']
-        print(f"{self.logged_in_user} has {legacy_points} legacy points.")
+        if self.logged_in_user in self.user_accounts:
+            legacy_points = self.user_accounts[self.logged_in_user]['legacy_points']
+            print(f"{self.logged_in_user} has {legacy_points} legacy points.")
+        else:
+            print("User not found.")  # Display error message if user not found
+
 
 
     def generate_event(self, band_stats):
@@ -139,7 +171,11 @@ class Game:
         decision_events = [
             ("A rival band, Harmony Havoc, has spread false rumors about your band, causing doubt among your fans. Do you:\n1. Ignore the rumors and focus on your performance.\n2. Address the rumors publicly to clear your band's name.", "Harmony Havoc"),
             ("Your band has been offered a last-minute opportunity to perform at a prestigious event, but it conflicts with a personal commitment of one of your band members. Do you:\n1. Decline the offer to honor the commitment.\n2. Accept the offer and find a replacement for the conflicted band member.", "Serenade Syndicate"),
-            ("Your band has the chance to collaborate with a famous artist on a new song, but it requires changing your musical style. Do you:\n1. Stick to your current style and decline the collaboration.\n2. Embrace the opportunity to experiment with a new style and accept the collaboration.", "Chord Chaos")
+            ("Your band has the chance to collaborate with a famous artist on a new song, but it requires changing your musical style. Do you:\n1. Stick to your current style and decline the collaboration.\n2. Embrace the opportunity to experiment with a new style and accept the collaboration.", "Chord Chaos"),
+            ("Your band is invited to participate in a charity concert, but it falls on the same day as your biggest rival's comeback tour. Do you:\n1. Decline the invitation to avoid confrontation.\n2. Accept the invitation and use it as an opportunity to outshine your rival.", "Voltage Vandals"),
+            ("Your band is offered a chance to headline a music festival, but it requires signing an exclusive contract that limits your creative freedom. Do you:\n1. Reject the offer to maintain artistic integrity.\n2. Accept the offer for the exposure and opportunity.", "Sonic Surge"),
+            ("A music producer offers to sign your band, but it means replacing one of your current band members with their preferred choice. Do you:\n1. Decline the offer to stay loyal to your band members.\n2. Accept the offer for the chance at stardom.", "Resonance Records"),
+            ("Your band is invited to play at a high-profile event, but it requires wearing costumes and performing a gimmicky routine. Do you:\n1. Decline the offer to preserve your band's image.\n2. Accept the offer for the exposure and opportunity.", "Starlight Showcase")
         ]
         return random.choice(decision_events)
 
@@ -232,6 +268,7 @@ class Game:
                 print("Invalid musician. Please select from the available options.")
         return user_band_members
 
+
     def display_selected_band_members(self, user_band_members):
         """Display the selected band members."""
         print("\nYour selected band members are:")
@@ -284,27 +321,30 @@ class Game:
         print("\nResolution event:")
         print("-" * 30)
         # Simulate winning or losing based on random chance
-        if random.random() < 0.75:  # 50% chance of winning
+        if random.random() < 0.75:  # 75% chance of winning
             print("Congratulations! Your band has won the Battle of the Bands competition!")
-            self.earn_legacy_points(100)  # Example: Award legacy points for winning
+            self.earn_legacy_points(100)  # Earn 100 legacy points for winning
             print("You've earned 100 legacy points for winning the competition!")
         else:
             print("Unfortunately, your band didn't win the Battle of the Bands competition. Better luck next time!")
-            self.spend_legacy_points(50)  # Example: Deduct legacy points for losing
+            self.spend_legacy_points(50)  # Spend 50 legacy points as a consolation for losing
             print("You've spent 50 legacy points as a consolation for losing.")
+
+# def main():
+#     """Main function to start the game."""
+#     game_instance = Game()
+#     while True:
+#         username = input("Enter a username: ")
+#         password = input("Enter a password: ")
+#         if game_instance.register_user(username, password):
+#             break  # Break the loop if registration is successful
+#     game_instance.play()
 
 def main():
     """Main function to start the game."""
     game_instance = Game()
-    while True:
-        username = input("Enter a username: ")
-        password = input("Enter a password: ")
-        if game_instance.register_user(username, password):
-            break  # Break the loop if registration is successful
     game_instance.play()
 
 if __name__ == "__main__":
     main()
-
-
 

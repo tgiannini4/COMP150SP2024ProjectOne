@@ -1,0 +1,15 @@
+{
+    "users": [
+      {
+        "username": "user1",
+        "password": "password1",
+        "legacy_points": 100
+      },
+      {
+        "username": "user2",
+        "password": "password2",
+        "legacy_points": 50
+      }
+    ]
+  }
+  
