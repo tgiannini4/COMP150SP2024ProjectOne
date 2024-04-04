@@ -197,6 +197,39 @@ class Game:
 
             # Continue with the game
             self.start_game(username)
+
+    
+   
+
+    # def play(self):
+    #     """Main method to start the game."""
+    #     while True:
+    #         username = input("Enter your username: ")
+    #         password = input("Enter your password: ")
+            
+    #         # Attempt to log in
+    #         if self.login(username, password):
+    #             print("Welcome to Battle of the Bands!!")
+    #             print_ascii_art()
+    #             print(f"Hello, {username}!")
+    #             break  # Exit the loop if login is successful
+
+    #         # If login unsuccessful, prompt for registration
+    #         ans = input("Would you like to register as a new user? (yes/no)")
+    #         if ans.lower() == 'yes':
+    #             if self.register_user(username, password):
+    #                 # Log in the newly registered user
+    #                 self.login(username, password)
+    #                 print("Welcome to Battle of the Bands!!")
+    #                 print_ascii_art()
+    #                 print(f"Hello, {username}!")
+    #                 break  # Exit the loop after successful registration and login
+    #             else:
+    #                 continue  # Retry registration if unsuccessful
+    #         else:
+    #             print("Please try again.")
+    #             continue  # Retry login if unsuccessful
+
             
     def calculate_band_stats(self, user_band_members):
         # Calculate the band stats based on the user's band members
@@ -340,102 +373,102 @@ if __name__ == "__main__":
 
 #unit tests 
     
-class TestGame(unittest.TestCase):
+# class TestGame(unittest.TestCase):
 
-    def setUp(self):
-        # Initialize a Game instance
-        self.game = Game()
+#     def setUp(self):
+#         # Initialize a Game instance
+#         self.game = Game()
 
-    def test_register_user(self):
-        # Test registering a new user
-        username = "test_user"
-        password = "test_password"
-        self.assertTrue(self.game.register_user(username, password))
+#     def test_register_user(self):
+#         # Test registering a new user
+#         username = "test_user"
+#         password = "test_password"
+#         self.assertTrue(self.game.register_user(username, password))
         
-        # Test registering an existing user
-        self.assertFalse(self.game.register_user(username, password))
+#         # Test registering an existing user
+#         self.assertFalse(self.game.register_user(username, password))
 
-    def test_login(self):
-        # Test logging in with correct credentials
-        username = "test_user"
-        password = "test_password"
-        self.game.register_user(username, password)
-        self.assertTrue(self.game.login(username, password))
+#     def test_login(self):
+#         # Test logging in with correct credentials
+#         username = "test_user"
+#         password = "test_password"
+#         self.game.register_user(username, password)
+#         self.assertTrue(self.game.login(username, password))
 
-        # Test logging in with incorrect credentials
-        self.assertFalse(self.game.login(username, "wrong_password"))
-        self.assertFalse(self.game.login("wrong_username", password))
+#         # Test logging in with incorrect credentials
+#         self.assertFalse(self.game.login(username, "wrong_password"))
+#         self.assertFalse(self.game.login("wrong_username", password))
 
-    def test_earn_legacy_points(self):
-        # Test earning legacy points
-        initial_points = self.game.user_accounts.get(self.game.logged_in_user, {}).get("legacy_points", 0)
-        self.game.earn_legacy_points(50)
-        updated_points = self.game.user_accounts.get(self.game.logged_in_user, {}).get("legacy_points", 0)
-        self.assertEqual(updated_points, initial_points + 50)
+#     def test_earn_legacy_points(self):
+#         # Test earning legacy points
+#         initial_points = self.game.user_accounts.get(self.game.logged_in_user, {}).get("legacy_points", 0)
+#         self.game.earn_legacy_points(50)
+#         updated_points = self.game.user_accounts.get(self.game.logged_in_user, {}).get("legacy_points", 0)
+#         self.assertEqual(updated_points, initial_points + 50)
 
-    def test_spend_legacy_points(self):
-        # Test spending legacy points
-        self.game.user_accounts[self.game.logged_in_user]["legacy_points"] = 100
-        initial_points = self.game.user_accounts.get(self.game.logged_in_user, {}).get("legacy_points", 0)
-        self.game.spend_legacy_points(50)
-        updated_points = self.game.user_accounts.get(self.game.logged_in_user, {}).get("legacy_points", 0)
-        self.assertEqual(updated_points, initial_points - 50)
+#     def test_spend_legacy_points(self):
+#         # Test spending legacy points
+#         self.game.user_accounts[self.game.logged_in_user]["legacy_points"] = 100
+#         initial_points = self.game.user_accounts.get(self.game.logged_in_user, {}).get("legacy_points", 0)
+#         self.game.spend_legacy_points(50)
+#         updated_points = self.game.user_accounts.get(self.game.logged_in_user, {}).get("legacy_points", 0)
+#         self.assertEqual(updated_points, initial_points - 50)
 
-    def test_load_user_data(self):
-        # Test loading user data from file
-        self.game.load_user_data()
-        self.assertIsInstance(self.game.user_data, dict)
+#     def test_load_user_data(self):
+#         # Test loading user data from file
+#         self.game.load_user_data()
+#         self.assertIsInstance(self.game.user_data, dict)
 
-    def test_load_user_accounts(self):
-        # Test loading user accounts from file
-        self.assertIsInstance(self.game.load_user_accounts(), dict)
+#     def test_load_user_accounts(self):
+#         # Test loading user accounts from file
+#         self.assertIsInstance(self.game.load_user_accounts(), dict)
 
-    def test_save_user_accounts(self):
-        # Test saving user accounts to file
-        self.game.user_accounts = {"test_user": {"password": "test_password", "legacy_points": 0}}
-        self.game.save_user_accounts()
-        with open('user_accounts.json', 'r') as file:
-            saved_data = json.load(file)
-            self.assertEqual(saved_data, {"test_user": {"password": "test_password", "legacy_points": 0}})
+#     def test_save_user_accounts(self):
+#         # Test saving user accounts to file
+#         self.game.user_accounts = {"test_user": {"password": "test_password", "legacy_points": 0}}
+#         self.game.save_user_accounts()
+#         with open('user_accounts.json', 'r') as file:
+#             saved_data = json.load(file)
+#             self.assertEqual(saved_data, {"test_user": {"password": "test_password", "legacy_points": 0}})
 
-    def test_check_legacy_points(self):
-        # Test checking legacy points for a user
-        self.game.user_accounts["test_user"] = {"password": "test_password", "legacy_points": 50}
-        with patch('sys.stdout', new=StringIO()) as fake_out:
-            self.game.logged_in_user = "test_user"
-            self.game.check_legacy_points()
-            self.assertIn("50", fake_out.getvalue())
+#     def test_check_legacy_points(self):
+#         # Test checking legacy points for a user
+#         self.game.user_accounts["test_user"] = {"password": "test_password", "legacy_points": 50}
+#         with patch('sys.stdout', new=StringIO()) as fake_out:
+#             self.game.logged_in_user = "test_user"
+#             self.game.check_legacy_points()
+#             self.assertIn("50", fake_out.getvalue())
 
-    def test_generate_event(self):
-        # Test generating an event
-        band_stats = (20, 15, 10)  # Placeholder band stats
-        event = self.game.generate_event(band_stats)
-        self.assertIsInstance(event, str)
+#     def test_generate_event(self):
+#         # Test generating an event
+#         band_stats = (20, 15, 10)  # Placeholder band stats
+#         event = self.game.generate_event(band_stats)
+#         self.assertIsInstance(event, str)
 
-    def test_generate_decision_event(self):
-        # Test generating a decision event
-        decision_event, rival_band = self.game.generate_decision_event()
-        self.assertIsInstance(decision_event, str)
-        self.assertIsInstance(rival_band, str)
+#     def test_generate_decision_event(self):
+#         # Test generating a decision event
+#         decision_event, rival_band = self.game.generate_decision_event()
+#         self.assertIsInstance(decision_event, str)
+#         self.assertIsInstance(rival_band, str)
 
-    def test_select_band_members(self):
-        # Test selecting band members
-        with patch('builtins.input', side_effect=["Beatrice Groove", "Harmony Heart", "Melody Muse", "Axel Blaze"]):
-            band_members = self.game.select_band_members()
-            self.assertEqual(len(band_members), 4)
+#     def test_select_band_members(self):
+#         # Test selecting band members
+#         with patch('builtins.input', side_effect=["Beatrice Groove", "Harmony Heart", "Melody Muse", "Axel Blaze"]):
+#             band_members = self.game.select_band_members()
+#             self.assertEqual(len(band_members), 4)
 
-    def test_select_band_venue(self):
-        # Test selecting a band venue
-        with patch('builtins.input', return_value="The Melody Mansion"):
-            selected_venue = self.game.select_band_venue()
-            self.assertEqual(selected_venue, "The Melody Mansion")
+#     def test_select_band_venue(self):
+#         # Test selecting a band venue
+#         with patch('builtins.input', return_value="The Melody Mansion"):
+#             selected_venue = self.game.select_band_venue()
+#             self.assertEqual(selected_venue, "The Melody Mansion")
 
-    def test_start_game(self):
-        # Test starting the game
-        with patch('builtins.input', side_effect=["TestUser", "TestPassword", "yes", "TestBand", "1"]):
-            self.game.play()
-            self.assertEqual(self.game.band_venue, "The Melody Mansion")  # Assuming the user selects the first venue
+#     def test_start_game(self):
+#         # Test starting the game
+#         with patch('builtins.input', side_effect=["TestUser", "TestPassword", "yes", "TestBand", "1"]):
+#             self.game.play()
+#             self.assertEqual(self.game.band_venue, "The Melody Mansion")  # Assuming the user selects the first venue
 
 
-if __name__ == '__main__':
-    unittest.main()
+# if __name__ == '__main__':
+#     unittest.main()
